@@ -1,20 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Axborot Tizimlari va Texnologiyalari Kafedrasi
 
-## Getting Started
+Bu loyiha universitetning “Axborot tizimlari va texnologiyalari” (ATT) kafedrasi uchun ishlab chiqilgan zamonaviy, responsive va optimallashtirilgan veb-sahifa hisoblanadi.
+Sayt foydalanuvchilarga kafedra haqida umumiy ma’lumot, professor-o‘qituvchilar tarkibi, o‘quv dasturlari, aloqa ma’lumotlari va universitet haqidagi qisqacha ma’lumotlarni taqdim etadi.
 
-First, run the development server:
+## Texnologiyalar
 
-```bash
+Loyiha quyidagi texnologiyalar asosida qurilgan:
+
+1. Next.js 14 (App Router)
+
+2. CSS (Global Styles)
+
+3. React Components (modulli tuzilma)
+
+4. Font Awesome — ikonlar uchun
+
+5. Google Fonts (Public Sans) — matn shrifti uchun
+
+
+## O‘rnatish (Installation)
+
+Loyihani klonlash yoki yuklab olishdan so‘ng quyidagi amallarni bajaring:
+
+# 1. Reponi klonlash
+git clone https://github.com/username/att-kafedra.git
+
+# 2. Loyihaga kirish
+cd att-kafedra
+
+# 3. Kerakli paketlarni o‘rnatish
+npm install
+
+# 4. Dastur ishga tushirish (development rejimida)
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+
+Open https://axborot-texnologiyalari.netlify.app/ with your browser to see the result.
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
@@ -22,15 +44,18 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+Xususiyatlar (Features)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🔹 Zamonaviy dizayn (responsive)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🔹 Next.js App Router arxitekturasi
 
-## Deploy on Vercel
+🔹 Scroll active navbar
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🔹 Ma’lumotlar modulli data/ papkasidan keladi
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🔹 Google Fonts va Font Awesome integratsiyasi
+
+🔹 Oson kengaytiriladigan komponentlar tuzilmasi
+
+
