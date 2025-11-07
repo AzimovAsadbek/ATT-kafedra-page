@@ -62,6 +62,7 @@ export default function Contact() {
                   gridTemplateColumns: "1fr 1fr",
                   gap: "1rem",
                 }}
+                className="contact-form-input"
               >
                 <div>
                   <label>Ismingiz</label>
