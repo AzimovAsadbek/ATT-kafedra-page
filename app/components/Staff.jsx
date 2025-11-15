@@ -1,5 +1,6 @@
+import Image from "next/image";
 import staffData from "../data/staffData";
-
+import erkabayev from "@/public/images/erkaboyev_ulugbek.jpg";
 export default function Staff() {
   return (
     <section id="staff" className="section">
@@ -16,12 +17,30 @@ export default function Staff() {
       <div className="cards-container">
         {staffData.map((teacher, index) => (
           <div key={index} className="card">
-            <img
-              src={teacher.photo}
-              alt={teacher.name}
-              className="card-img"
-              style={{ height: "200px", objectFit: "cover" }}
-            />
+            <div
+              style={{
+                display: "flex",
+                width: "100%",
+                justifyContent: "center",
+                paddingTop: "15px",
+              }}
+            >
+              <Image
+                src={teacher.photo}
+                alt={teacher.name}
+                className="card-img"
+                style={{
+                  width: "170px",
+                  height: "170px",
+                  objectFit: "cover",
+                  borderRadius: "50%",
+                  border: "2px solid #c6c6c6",
+                  padding: "5px",
+                }}
+                width={"200px "}
+                height={"200px"}
+              />
+            </div>
             <div className="card-body">
               <h3 className="card-title">{teacher.name}</h3>
               <p className="card-text">{teacher.position}</p>

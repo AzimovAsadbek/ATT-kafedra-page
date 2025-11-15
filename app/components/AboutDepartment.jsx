@@ -7,10 +7,9 @@ export default function AboutDepartment() {
         <span className="section-subtitle">Tanishuv</span>
         <h2 className="section-title">Kafedra Haqida</h2>
         <p className="section-desc">
-          2004-yilda asos solingan kafedramiz axborot tizimlarini loyihalash,
-          tahlil qilish va boshqarish sohalarida malakali mutaxassis
-          yetishtirishga qaratilgan. Bugungi kunda 20 nafar
-          professor-o'qituvchilar faoliyat olib bormoqda.
+          Kafedramiz axborot tizimlarini loyihalash, tahlil qilish va boshqarish
+          sohalarida malakali mutaxassis yetishtirishga qaratilgan. Bugungi
+          kunda 25 nafarga professor-o'qituvchilar faoliyat olib bormoqda.
         </p>
       </div>
 

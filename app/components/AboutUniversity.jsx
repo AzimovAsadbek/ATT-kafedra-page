@@ -7,10 +7,14 @@ export default function AboutUniversity() {
         <span className="section-subtitle">Bizning Universitetimiz</span>
         <h2 className="section-title">Universitet Tarixi va Imkoniyatlari</h2>
         <p className="section-desc">
-          75 yillik tarixga ega bo'lgan universitetimiz O'zbekistonning yetakchi
-          oliy ta'lim muassasalaridan biri hisoblanadi. Texnologik
-          innovatsiyalar va ilmiy tadqiqotlarni rivojlantirish borasida muhim
-          yutuqlarga erishganmiz.
+          Namangan davlat texnika universiteti 2025-yil 24-yanvardagi
+          PQ-23-sonli Prezident qaroriga muvofiq tashkil topgan. Qarorga ko‘ra,
+          ushbu universitet tashkil etilishi uchun quyidagi institutlar negiz
+          sifatida olingan: Namangan muhandislik‑texnologiya instituti, Namangan
+          muhandislik‑qurilish instituti, Namangan to‘qimachilik sanoati
+          instituti. Universitetning asosiy maqsadi: muhandislik, qurilish,
+          to‘qimachilik, axborot texnologiyalari va boshqa ishlab chiqarish,
+          qayta ishlash sohalarida yuqori malakali mutaxassislar tayyorlash.
         </p>
       </div>
 

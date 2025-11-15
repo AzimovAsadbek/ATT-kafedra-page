@@ -1,24 +1,23 @@
 const universityCards = [
   {
-    title: "Kampus",
-    image:
-      "https://bridge-u.com/wp-content/uploads/2023/06/campus-or-city-university-blog-post-featured-image.jpg",
+    title: "Ta'lim yonalishlari va ilmiy salohiyatlar",
+    image: "https://namdtu.uz/storage/news/14042025/2025-04-14-100141.jpg",
     description:
-      "35 gektar maydonga ega zamonaviy kampus, harbiy sharoitda turar-joy binolari, kutubxona, sport inshootlari, san'at markazi va zamonaviy infratuzilma.",
+      "Universitetda bakalavriat, magistratura va doktorantura bosqichlari faoliyat yuritadi. Har yili 20 dan ortiq ta’lim yo‘nalishlari bo‘yicha 10 000 dan ortiq talaba tahsil oladi.",
   },
   {
-    title: "Zamonaviy Laboratoriyalar",
+    title: "Texnik va innovatsion imkoniyatlar",
     image:
-      "https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3",
+      "https://namdtu.uz/public/storage/1672826392-istock-1068618692-850x480.jpeg",
     description:
-      "Sun'iy intellekt, Kiberxavfsizlik, Ma'lumotlar tahlili, IoT va Robototexnika laboratoriyalari eng zamonaviy asbob-uskunalar bilan jihozlangan.",
+      "NamDTU talabalari zamonaviy kompyuter sinflari, IT laboratoriyalar, startap markazlar va ilmiy innovatsiya markazlarida amaliy bilim oladilar. Universitet Axborot tizimlari va texnologiyalari kafedrasi orqali IT sohasida chuqurlashtirilgan ta’lim, dasturlash va veb-ishlab chiqish yo‘nalishlarida ilg‘or o‘quv dasturlarni taklif etadi.",
   },
   {
-    title: "Ilmiy Markazlar",
+    title: "Xalqaro aloqalar va hamkorlik",
     image:
-      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3",
+      "https://static.tuit.uz/uploads/1/AZ8J40LCXpd2vy_zaDZhm0npWnxOc6Fj.jpg",
     description:
-      "Universitetda 15 dan ortiq ilmiy-tadqiqot markazlari, jumladan AI Innovatsion Markazi, Sun'iy Intellekt Tadqiqotlar Institut, kiberxavfsizlik markazi va boshqalar.",
+      "Universitet Turkiya, Janubiy Koreya, Rossiya, Polsha, Xitoy va Qozog‘istondagi universitetlar bilan hamkorlik aloqalarini yo‘lga qo‘ygan. Talabalar Erasmus+, DAAD, KOICA kabi xalqaro dasturlar orqali xorijda o‘qish va stajirovka o‘tash imkoniyatiga ega.",
   },
 ];
 
