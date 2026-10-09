@@ -1,12 +1,12 @@
 import "./scripts/load-env.mjs";
 import { defineConfig } from "drizzle-kit";
 
+const url = process.env.DATABASE_URL || process.env.TURSO_DATABASE_URL || "file:./data/app.db";
+const authToken = process.env.DATABASE_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN;
+
 export default defineConfig({
-  dialect: process.env.DATABASE_AUTH_TOKEN ? "turso" : "sqlite",
+  dialect: authToken ? "turso" : "sqlite",
   schema: "./lib/db/schema.js",
   out: "./drizzle",
-  dbCredentials: {
-    url: process.env.DATABASE_URL || "file:./data/app.db",
-    authToken: process.env.DATABASE_AUTH_TOKEN,
-  },
+  dbCredentials: { url, authToken },
 });

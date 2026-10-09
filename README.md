@@ -68,6 +68,7 @@ Fayl formati: `[{ "slug": "...", "phone": "...", "birthYear": 1980, "rate": 1, "
 | `NEXT_PUBLIC_SITE_URL`                    | Saytning toʻliq manzili (SEO, sitemap)                                  |
 | `DATABASE_URL`                            | `file:./data/app.db` (lokal) yoki `libsql://...` (Turso)               |
 | `DATABASE_AUTH_TOKEN`                     | Faqat Turso uchun                                                      |
+| `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`  | Vercel Marketplace'dagi Turso integratsiyasi qoʻshadigan muqobil nomlar |
 | `AUTH_SECRET`                             | Sessiyani imzolash kaliti, **productionda majburiy** (≥ 32 belgi)       |
 | `ADMIN_USERNAME`, `ADMIN_PASSWORD`        | Birinchi administrator (faqat bazada admin boʻlmaganda ishlatiladi)     |
 | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`  | Ixtiyoriy: yangi murojaatlar haqida Telegram xabarnomasi                |
@@ -110,5 +111,5 @@ Yangi kontent turi qoʻshish uchun `lib/db/schema.js` ga jadval, `lib/content-co
 
 ## Deploy
 
+- **Vercel**: proyekt GitHub repoga ulangan — `master`ga har bir push avtomatik deploy qilinadi. Maʼlumotlar bazasi Vercel → Storage → **Turso** integratsiyasi orqali ulanadi (`TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN` avtomatik qoʻshiladi). Build vaqtida `npm run db:setup` migratsiyalarni qoʻllaydi va boʻsh bazani toʻldiradi. Shuningdek `AUTH_SECRET`, `ADMIN_USERNAME`, `ADMIN_PASSWORD`, `NEXT_PUBLIC_SITE_URL` koʻrsatilishi kerak. Baza ulanmagan boʻlsa, build aniq xabar bilan toʻxtaydi.
 - **Oʻz serveringiz (VPS)**: `npm run build && npm start`. SQLite fayli `data/` papkasida saqlanadi — uni zaxiralab boring.
-- **Vercel / Netlify** (serverless): fayl tizimi doimiy emas, shuning uchun [Turso](https://turso.tech) bazasidan foydalaning va `DATABASE_URL`, `DATABASE_AUTH_TOKEN`, `AUTH_SECRET` ni platforma sozlamalarida koʻrsating.
