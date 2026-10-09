@@ -14,10 +14,11 @@ export async function GET(_request, { params }) {
 
   if (!file) return new Response("Not found", { status: 404 });
 
-  return new Response(new Uint8Array(file.data), {
+  const bytes = Buffer.from(file.data, "base64");
+  return new Response(new Uint8Array(bytes), {
     headers: {
       "Content-Type": file.mimeType,
-      "Content-Length": String(file.data.length),
+      "Content-Length": String(bytes.length),
       "Cache-Control": "public, max-age=31536000, immutable",
       "X-Content-Type-Options": "nosniff",
     },

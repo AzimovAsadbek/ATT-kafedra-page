@@ -5,7 +5,7 @@ import "./load-env.mjs";
 import { createInterface } from "node:readline/promises";
 import { eq } from "drizzle-orm";
 import { hashPassword, MIN_PASSWORD_LENGTH } from "../lib/auth/password.js";
-import { createDb } from "../lib/db/client.js";
+import { closeDb, createDb } from "../lib/db/client.js";
 import { users } from "../lib/db/schema.js";
 
 const [username, name = "Administrator"] = process.argv.slice(2);
@@ -43,3 +43,5 @@ if (existing) {
   await db.insert(users).values({ username, name, passwordHash });
   console.log(`✓ "${username}" administratori yaratildi`);
 }
+
+await closeDb(db);

@@ -1,26 +1,12 @@
 {
   "version": "7",
-  "dialect": "sqlite",
+  "dialect": "postgresql",
   "entries": [
     {
       "idx": 0,
-      "version": "6",
-      "when": 1791541541540,
+      "version": "7",
+      "when": 1791568860740,
       "tag": "0000_init",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1791543324886,
-      "tag": "0001_staff_academic_details",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "6",
-      "when": 1791545095780,
-      "tag": "0002_staff_profiles",
       "breakpoints": true
     }
   ]

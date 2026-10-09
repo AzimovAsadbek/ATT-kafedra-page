@@ -31,7 +31,7 @@ Namangan davlat texnika universiteti “Axborot tizimlari va texnologiyalari” 
 | ----------------- | ------------------------------------------------------------- |
 | Framework         | Next.js 16 (App Router, Server Components, Server Actions)    |
 | UI                | React 19, Tailwind CSS 4, lucide-react, `next/font` (Source Serif 4 + Source Sans 3) |
-| Maʼlumotlar bazasi | SQLite / [Turso](https://turso.tech) (libSQL) + Drizzle ORM   |
+| Maʼlumotlar bazasi | PostgreSQL: [Neon](https://neon.tech) (production), Docker (lokal) + Drizzle ORM |
 | Validatsiya       | Zod                                                           |
 | Autentifikatsiya  | JWT (jose) — httpOnly cookie, scrypt parol xeshi              |
 | Rasmlar           | sharp (WebP), `next/image`                                    |
@@ -43,8 +43,14 @@ Talab: Node.js 20.12 yoki undan yuqori.
 ```bash
 npm install
 cp .env.example .env.local   # qiymatlarni toʻldiring
+npm run db:up                # lokal PostgreSQL (Docker)
 npm run dev
 ```
+
+Lokal PostgreSQL uchun ikki yoʻl bor:
+
+- **Docker** (tavsiya): `npm run db:up` — `docker-compose.yml` dagi PostgreSQL 17 ni ishga tushiradi. `.env.example` dagi `DATABASE_URL` aynan shu bazaga moslangan.
+- **Neon**: `.env.local` dagi `DATABASE_URL` ga Neon bazasi (yoki uning alohida dev branch'i) manzilini yozing.
 
 `npm run dev` va `npm run build` avval `npm run db:setup` ni ishga tushiradi: migratsiyalar qoʻllanadi, boʻsh baza boshlangʻich maʼlumotlar bilan toʻldiriladi va birinchi administrator yaratiladi. Agar `ADMIN_PASSWORD` berilmagan boʻlsa, vaqtinchalik parol terminalga chiqariladi — kirgandan soʻng uni `/admin/account` sahifasida almashtiring.
 
@@ -57,7 +63,7 @@ Boshlangʻich maʼlumotlar (`lib/db/seed-data.js`) [namdtu.uz](https://namdtu.uz
 Xodimlarning shaxsiy maʼlumotlari (telefon, tugʻilgan yil, stavka, faoliyat turi) **repoda saqlanmaydi**. Ular gitga kirmaydigan `private/staff-private.json` faylida turadi va:
 
 - yangi baza yaratilganda (`npm run db:setup`) avtomatik import qilinadi;
-- mavjud bazaga (masalan, Turso) `npm run db:import-private` orqali yoziladi.
+- mavjud bazaga (masalan, Neon) `npm run db:import-private` orqali yoziladi.
 
 Fayl formati: `[{ "slug": "...", "phone": "...", "birthYear": 1980, "rate": 1, "employmentType": "Asosiy" }]`.
 
@@ -66,9 +72,7 @@ Fayl formati: `[{ "slug": "...", "phone": "...", "birthYear": 1980, "rate": 1, "
 | Oʻzgaruvchi                               | Tavsif                                                                 |
 | ----------------------------------------- | ---------------------------------------------------------------------- |
 | `NEXT_PUBLIC_SITE_URL`                    | Saytning toʻliq manzili (SEO, sitemap)                                  |
-| `DATABASE_URL`                            | `file:./data/app.db` (lokal) yoki `libsql://...` (Turso)               |
-| `DATABASE_AUTH_TOKEN`                     | Faqat Turso uchun                                                      |
-| `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`  | Vercel Marketplace'dagi Turso integratsiyasi qoʻshadigan muqobil nomlar |
+| `DATABASE_URL`                            | PostgreSQL manzili: Neon (`*.neon.tech` — HTTP drayveri) yoki lokal Docker |
 | `AUTH_SECRET`                             | Sessiyani imzolash kaliti, **productionda majburiy** (≥ 32 belgi)       |
 | `ADMIN_USERNAME`, `ADMIN_PASSWORD`        | Birinchi administrator (faqat bazada admin boʻlmaganda ishlatiladi)     |
 | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`  | Ixtiyoriy: yangi murojaatlar haqida Telegram xabarnomasi                |
@@ -80,6 +84,7 @@ Fayl formati: `[{ "slug": "...", "phone": "...", "birthYear": 1980, "rate": 1, "
 | `npm run dev`                           | Ishlab chiqish serveri                                |
 | `npm run build` / `npm start`           | Production build va ishga tushirish                   |
 | `npm run lint`                          | ESLint tekshiruvi                                     |
+| `npm run db:up` / `db:down`             | Lokal PostgreSQL'ni (Docker) ishga tushirish / toʻxtatish |
 | `npm run db:setup`                      | Migratsiya + boshlangʻich maʼlumotlar (idempotent)     |
 | `npm run db:generate`                   | `lib/db/schema.js` oʻzgargach yangi migratsiya yaratish |
 | `npm run db:studio`                     | Bazani brauzerda koʻrish (Drizzle Studio)             |
@@ -111,5 +116,5 @@ Yangi kontent turi qoʻshish uchun `lib/db/schema.js` ga jadval, `lib/content-co
 
 ## Deploy
 
-- **Vercel**: proyekt GitHub repoga ulangan — `master`ga har bir push avtomatik deploy qilinadi. Maʼlumotlar bazasi Vercel → Storage → **Turso** integratsiyasi orqali ulanadi (`TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN` avtomatik qoʻshiladi). Build vaqtida `npm run db:setup` migratsiyalarni qoʻllaydi va boʻsh bazani toʻldiradi. Shuningdek `AUTH_SECRET`, `ADMIN_USERNAME`, `ADMIN_PASSWORD`, `NEXT_PUBLIC_SITE_URL` koʻrsatilishi kerak. Baza ulanmagan boʻlsa, build aniq xabar bilan toʻxtaydi.
-- **Oʻz serveringiz (VPS)**: `npm run build && npm start`. SQLite fayli `data/` papkasida saqlanadi — uni zaxiralab boring.
+- **Vercel**: proyekt GitHub repoga ulangan — `master`ga har bir push avtomatik deploy qilinadi. Maʼlumotlar bazasi Vercel → Storage → **Neon** integratsiyasi orqali ulanadi (`DATABASE_URL` avtomatik qoʻshiladi). Build vaqtida `npm run db:setup` migratsiyalarni qoʻllaydi va boʻsh bazani toʻldiradi. Shuningdek `AUTH_SECRET`, `ADMIN_USERNAME`, `ADMIN_PASSWORD`, `NEXT_PUBLIC_SITE_URL` koʻrsatilishi kerak. Baza ulanmagan boʻlsa, build aniq xabar bilan toʻxtaydi.
+- **Oʻz serveringiz (VPS)**: `DATABASE_URL` ni Neon bazasiga yoʻnaltirib, `npm run build && npm start`.

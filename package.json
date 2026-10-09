@@ -9,6 +9,8 @@
     "prebuild": "npm run db:setup",
     "start": "next start",
     "lint": "eslint .",
+    "db:up": "docker compose up -d --wait",
+    "db:down": "docker compose down",
     "db:generate": "drizzle-kit generate",
     "db:setup": "node scripts/setup.mjs",
     "db:studio": "drizzle-kit studio",
@@ -16,11 +18,12 @@
     "db:import-private": "node scripts/import-private.mjs"
   },
   "dependencies": {
-    "@libsql/client": "^0.18.0",
+    "@neondatabase/serverless": "^1.2.0",
     "drizzle-orm": "^0.45.4",
     "jose": "^6.2.12",
     "lucide-react": "^1.54.0",
     "next": "^16.4.0",
+    "postgres": "^3.4.9",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "server-only": "^0.0.1",

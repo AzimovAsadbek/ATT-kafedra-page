@@ -9,7 +9,6 @@ const securityHeaders = [
 const nextConfig = {
   reactCompiler: true,
   poweredByHeader: false,
-  serverExternalPackages: ["@libsql/client", "libsql"],
   experimental: {
     serverActions: {
       // Rasm yuklash uchun (maksimal fayl hajmi 5 MB + forma maydonlari)
