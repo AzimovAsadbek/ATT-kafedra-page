@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Portrait from "../Portrait";
+import { Avatar } from "../Portrait";
 import SectionHeading from "../SectionHeading";
 import { positionLine } from "../StaffCard";
 
@@ -21,7 +21,7 @@ export default function DepartmentSection({ settings, staff }) {
   return (
     <section id="kafedra" className="py-20 lg:py-28">
       <div className="container-page">
-        <SectionHeading index="01" label="Kafedra haqida" title="Maqsad va vazifalar" description={settings.department_intro} />
+        <SectionHeading label="Kafedra haqida" title="Maqsad va vazifalar" description={settings.department_intro} />
 
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-7">
@@ -56,7 +56,7 @@ export default function DepartmentSection({ settings, staff }) {
                   {leaders.map((member) => (
                     <li key={member.id}>
                       <Link href={`/oqituvchilar/${member.slug}`} className="group flex items-center gap-5">
-                        <Portrait member={member} sizes="72px" className="w-[72px] shrink-0" />
+                        <Avatar member={member} className="size-16 ring-1 ring-line" />
                         <div>
                           <p className="font-serif text-lg leading-snug font-semibold text-brand-950 decoration-gold-500 decoration-2 underline-offset-4 group-hover:underline">
                             {member.fullName}

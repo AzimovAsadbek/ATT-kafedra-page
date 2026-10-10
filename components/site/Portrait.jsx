@@ -45,3 +45,18 @@ export default function Portrait({ member, sizes, preload = false, className = "
     </div>
   );
 }
+
+/** Dumaloq kichik surat (ro'yxatlar uchun); surat bo'lmasa — to'q ko'k fonda bosh harflar. */
+export function Avatar({ member, className = "size-16" }) {
+  return (
+    <div className={`relative shrink-0 overflow-hidden rounded-full bg-brand-900 ${className}`}>
+      {member.photo ? (
+        <Image src={member.photo} alt="" fill sizes="80px" className="object-cover object-top" />
+      ) : (
+        <span className="grid size-full place-items-center font-serif text-lg font-medium tracking-wide text-gold-300" aria-hidden="true">
+          {getInitials(member.fullName)}
+        </span>
+      )}
+    </div>
+  );
+}

@@ -64,7 +64,7 @@ export default function StaffDirectory({ staff }) {
       </div>
 
       {visibleStaff.length > 0 ? (
-        <ul className="grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-8 2xl:grid-cols-5">
+        <ul className="grid border-b border-line sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-3">
           {visibleStaff.map((member) => (
             <StaffCard key={member.id} member={member} />
           ))}

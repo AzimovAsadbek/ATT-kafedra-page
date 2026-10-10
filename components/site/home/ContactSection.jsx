@@ -14,7 +14,7 @@ export default function ContactSection({ settings }) {
   return (
     <section id="aloqa" className="py-20 lg:py-28">
       <div className="container-page">
-        <SectionHeading index="06" label="Bogʻlanish" title="Kafedra bilan aloqa" description={settings.contact_intro} />
+        <SectionHeading label="Bogʻlanish" title="Kafedra bilan aloqa" description={settings.contact_intro} />
 
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-5">

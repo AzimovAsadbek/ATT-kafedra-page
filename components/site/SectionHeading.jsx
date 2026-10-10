@@ -1,18 +1,16 @@
 /**
- * Tahririy uslubdagi bo'lim sarlavhasi: chapda raqam va sarlavha, o'ngda izoh.
+ * Bo'lim sarlavhasi: chapda yorliq va sarlavha, o'ngda izoh.
  * `aside` — sarlavha yonidagi qo'shimcha element (masalan, "Barchasi" havolasi).
  */
-export default function SectionHeading({ index, label, title, description, aside, inverted = false }) {
+export default function SectionHeading({ label, title, description, aside, inverted = false }) {
   return (
-    <div className="mb-12 grid gap-6 lg:mb-16 lg:grid-cols-12 lg:gap-12">
+    <div className="mb-12 grid gap-6 lg:mb-14 lg:grid-cols-12 lg:gap-12">
       <div className="lg:col-span-5">
-        <p className={`label-caps flex items-center gap-3 ${inverted ? "text-gold-300" : "text-gold-700"}`}>
-          <span className="tabular-nums">{index}</span>
-          <span className={`h-px w-8 ${inverted ? "bg-gold-300/60" : "bg-gold-500/60"}`} aria-hidden="true" />
-          {label}
-        </p>
+        {label && (
+          <p className={`text-[15px] font-medium ${inverted ? "text-gold-300" : "text-gold-700"}`}>{label}</p>
+        )}
         <h2
-          className={`mt-4 font-serif text-[2rem] leading-[1.15] font-semibold tracking-tight sm:text-[2.5rem] ${
+          className={`mt-2 font-serif text-[2rem] leading-[1.15] font-semibold tracking-tight sm:text-[2.5rem] ${
             inverted ? "text-white" : "text-brand-950"
           }`}
         >

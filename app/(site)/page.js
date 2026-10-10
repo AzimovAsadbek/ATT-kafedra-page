@@ -30,12 +30,12 @@ function jsonLd(settings) {
 }
 
 export default async function HomePage() {
-  const { settings, staff, portraits, programs, universityCards, departmentCards, stats } = await getHomePageData();
+  const { settings, staff, programs, universityCards, departmentCards, stats } = await getHomePageData();
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(settings) }} />
-      <HomeHero settings={settings} stats={stats} portraits={portraits} />
+      <HomeHero settings={settings} stats={stats} />
       <DepartmentSection settings={settings} staff={staff} />
       <ProgramsSection programs={programs} intro={settings.programs_intro} />
       <StaffPreview staff={staff} intro={settings.staff_intro} />
