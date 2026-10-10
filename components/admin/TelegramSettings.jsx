@@ -6,6 +6,7 @@ import Alert from "@/components/ui/Alert";
 import Field, { inputClass } from "@/components/ui/Field";
 import SubmitButton from "@/components/ui/SubmitButton";
 import { detectTelegramChats, saveTelegramSettings, sendTelegramTest } from "@/lib/actions/telegram";
+import { useSubmitGuard } from "@/lib/hooks/use-submit-guard";
 
 const CHAT_TYPES = { private: "Shaxsiy chat", group: "Guruh", supergroup: "Guruh", channel: "Kanal" };
 
@@ -79,6 +80,7 @@ function Steps({ bot }) {
 
 export default function TelegramSettings({ tokenHint, chatIds: initialChatIds, enabled, bot, botError }) {
   const [saveState, saveAction] = useActionState(saveTelegramSettings, {});
+  const guardSave = useSubmitGuard(saveState);
   const [detectState, detectAction] = useActionState(detectTelegramChats, {});
   const [testState, testAction] = useActionState(sendTelegramTest, {});
   const [chatIds, setChatIds] = useState(initialChatIds);
@@ -92,7 +94,7 @@ export default function TelegramSettings({ tokenHint, chatIds: initialChatIds, e
       <StatusCard bot={bot} botError={botError} chatCount={initialChatIds.split(/\s+/).filter(Boolean).length} enabled={enabled} />
       <Steps bot={bot} />
 
-      <form action={saveAction} className="space-y-6 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8" noValidate>
+      <form action={saveAction} onSubmit={guardSave} className="space-y-6 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8" noValidate>
         <h2 className="text-lg font-bold">Sozlamalar</h2>
         {saveState.status === "success" && <Alert>{saveState.message}</Alert>}
         {saveState.status === "error" && <Alert variant="error">Formada xatolar bor. Belgilangan maydonlarni tekshiring.</Alert>}

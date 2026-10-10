@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import ActionButton from "@/components/admin/ActionButton";
 import PageHeader from "@/components/admin/PageHeader";
 import Alert from "@/components/ui/Alert";
-import { removeItem, togglePublished } from "@/lib/actions/content";
+import { removeItem, setPublished } from "@/lib/actions/content";
 import { requireAdmin } from "@/lib/auth/session";
 import { getResource, listItems } from "@/lib/data/content";
 
@@ -104,7 +104,7 @@ export default async function ResourceListPage({ params, searchParams }) {
                       <td className="px-6 py-3">
                         <div className="flex items-center justify-end gap-1">
                           <ActionButton
-                            action={togglePublished.bind(null, resourceKey, item.id)}
+                            action={setPublished.bind(null, resourceKey, item.id, !item.isPublished)}
                             label={item.isPublished ? "Saytdan yashirish" : "Saytda koʻrsatish"}
                           >
                             {item.isPublished ? <EyeOff className="size-4" /> : <Eye className="size-4" />}

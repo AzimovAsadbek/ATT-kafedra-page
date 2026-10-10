@@ -5,15 +5,17 @@ import Alert from "@/components/ui/Alert";
 import SubmitButton from "@/components/ui/SubmitButton";
 import { SETTINGS_GROUPS } from "@/lib/content-config";
 import { saveSettings } from "@/lib/actions/settings";
+import { useSubmitGuard } from "@/lib/hooks/use-submit-guard";
 import FormField from "./FormField";
 
 export default function SettingsForm({ settings }) {
   const [state, formAction] = useActionState(saveSettings, {});
+  const guardSubmit = useSubmitGuard(state);
   const values = state.values ?? settings;
   const errors = state.errors ?? {};
 
   return (
-    <form action={formAction} className="space-y-6" noValidate>
+    <form action={formAction} onSubmit={guardSubmit} className="space-y-6" noValidate>
       {state.status === "success" && <Alert>Sozlamalar saqlandi va saytda yangilandi.</Alert>}
       {state.status === "error" && (
         <Alert variant="error">Formada xatolar bor. Belgilangan maydonlarni tekshiring.</Alert>

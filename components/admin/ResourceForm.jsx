@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Fragment, useActionState } from "react";
 import Alert from "@/components/ui/Alert";
 import SubmitButton from "@/components/ui/SubmitButton";
+import { useSubmitGuard } from "@/lib/hooks/use-submit-guard";
 import FormField from "./FormField";
 
 const isWide = (field) => field.wide || ["textarea", "image", "checkbox", "relation"].includes(field.type);
@@ -14,11 +15,12 @@ const isWide = (field) => field.wide || ["textarea", "image", "checkbox", "relat
  */
 export default function ResourceForm({ action, fields, item, cancelHref }) {
   const [state, formAction] = useActionState(action, {});
+  const guardSubmit = useSubmitGuard(state);
   const values = state.values ?? item;
   const errors = state.errors ?? {};
 
   return (
-    <form action={formAction} className="space-y-6" noValidate>
+    <form action={formAction} onSubmit={guardSubmit} className="space-y-6" noValidate>
       {state.message && <Alert variant="error">{state.message}</Alert>}
       {state.errors && <Alert variant="error">Formada xatolar bor. Belgilangan maydonlarni tekshiring.</Alert>}
 

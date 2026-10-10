@@ -5,6 +5,7 @@ import Alert from "@/components/ui/Alert";
 import Field, { inputClass } from "@/components/ui/Field";
 import SubmitButton from "@/components/ui/SubmitButton";
 import { changePassword } from "@/lib/actions/account";
+import { useSubmitGuard } from "@/lib/hooks/use-submit-guard";
 
 const FIELDS = [
   { name: "currentPassword", label: "Joriy parol", autoComplete: "current-password" },
@@ -14,10 +15,11 @@ const FIELDS = [
 
 export default function PasswordForm() {
   const [state, formAction] = useActionState(changePassword, {});
+  const guardSubmit = useSubmitGuard(state);
   const errors = state.errors ?? {};
 
   return (
-    <form action={formAction} className="space-y-5" noValidate>
+    <form action={formAction} onSubmit={guardSubmit} className="space-y-5" noValidate>
       {state.status === "success" && (
         <Alert>Parol muvaffaqiyatli almashtirildi. Boshqa qurilmalardagi sessiyalar yopildi.</Alert>
       )}

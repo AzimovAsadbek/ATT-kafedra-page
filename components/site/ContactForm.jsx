@@ -1,10 +1,11 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import Alert from "@/components/ui/Alert";
 import Field, { inputClass } from "@/components/ui/Field";
 import SubmitButton from "@/components/ui/SubmitButton";
 import { submitContact } from "@/lib/actions/contact";
+import { useSubmitGuard } from "@/lib/hooks/use-submit-guard";
 
 const FIELDS = [
   { name: "name", label: "Ismingiz", autoComplete: "name", required: true },
@@ -14,12 +15,28 @@ const FIELDS = [
 ];
 
 export default function ContactForm() {
-  const [state, formAction] = useActionState(submitContact, { status: "idle" });
+  const [state, formAction] = useActionState(submitContact, { status: "idle", sent: 0 });
+  const guardSubmit = useSubmitGuard(state);
+  // Murojaatning noyob ID'si faqat brauzerda, birinchi yuborishda yaratiladi (sahifa statik,
+  // shuning uchun render paytida yaratib bo'lmaydi) va muvaffaqiyatli javobgacha o'zgarmaydi:
+  // takroriy yuborish serverda e'tiborsiz qoldiriladi.
+  const submissionId = useRef(null);
   const values = state.values ?? {};
   const errors = state.errors ?? {};
 
+  useEffect(() => {
+    if (state.status === "success") submissionId.current = null;
+  }, [state]);
+
+  const handleSubmit = (event) => {
+    submissionId.current ??= crypto.randomUUID?.() ?? `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+    event.currentTarget.elements.submissionId.value = submissionId.current;
+    guardSubmit(event);
+  };
+
   return (
-    <form action={formAction} className="relative space-y-5" noValidate>
+    <form action={formAction} onSubmit={handleSubmit} className="relative space-y-5" noValidate>
+      <input type="hidden" name="submissionId" defaultValue="" />
       {state.status === "success" && <Alert>Murojaatingiz qabul qilindi. Tez orada siz bilan bogʻlanamiz.</Alert>}
       {state.message && <Alert variant="error">{state.message}</Alert>}
 

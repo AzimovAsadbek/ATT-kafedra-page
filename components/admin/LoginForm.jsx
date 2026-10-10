@@ -6,13 +6,15 @@ import Alert from "@/components/ui/Alert";
 import Field, { inputClass } from "@/components/ui/Field";
 import SubmitButton from "@/components/ui/SubmitButton";
 import { login } from "@/lib/actions/auth";
+import { useSubmitGuard } from "@/lib/hooks/use-submit-guard";
 
 export default function LoginForm() {
   const [state, formAction] = useActionState(login, {});
+  const guardSubmit = useSubmitGuard(state);
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <form action={formAction} className="mt-8 space-y-5">
+    <form action={formAction} onSubmit={guardSubmit} className="mt-8 space-y-5">
       {state.error && <Alert variant="error">{state.error}</Alert>}
 
       <Field id="username" label="Login">

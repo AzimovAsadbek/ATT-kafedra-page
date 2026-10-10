@@ -11,8 +11,8 @@ const nextConfig = {
   poweredByHeader: false,
   experimental: {
     serverActions: {
-      // Rasm yuklash uchun (maksimal fayl hajmi 5 MB + forma maydonlari)
-      bodySizeLimit: "6mb",
+      // Vercel funksiyalarining so'rov chegarasi 4,5 MB; rasmlar brauzerda oldindan siqiladi.
+      bodySizeLimit: "4.5mb",
     },
   },
   images: {
