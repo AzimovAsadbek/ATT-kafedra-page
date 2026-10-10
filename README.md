@@ -116,5 +116,5 @@ Yangi kontent turi qoʻshish uchun `lib/db/schema.js` ga jadval, `lib/content-co
 
 ## Deploy
 
-- **Vercel**: proyekt GitHub repoga ulangan — `master`ga har bir push avtomatik deploy qilinadi. Maʼlumotlar bazasi Vercel → Storage → **Neon** integratsiyasi orqali ulanadi (`DATABASE_URL` avtomatik qoʻshiladi). Build vaqtida `npm run db:setup` migratsiyalarni qoʻllaydi va boʻsh bazani toʻldiradi. Shuningdek `AUTH_SECRET`, `ADMIN_USERNAME`, `ADMIN_PASSWORD`, `NEXT_PUBLIC_SITE_URL` koʻrsatilishi kerak. Baza ulanmagan boʻlsa, build aniq xabar bilan toʻxtaydi.
+- **Vercel** (<https://att-kafedra.vercel.app>): proyekt GitHub repoga ulangan — `master`ga har bir push avtomatik deploy qilinadi. Maʼlumotlar bazasi Vercel → Storage → **Neon** integratsiyasi orqali ulanadi (`DATABASE_URL` avtomatik qoʻshiladi). Build vaqtida `npm run db:setup` migratsiyalarni (tranzaksiya ichida, `DATABASE_URL_UNPOOLED` orqali) qoʻllaydi va boʻsh bazani toʻldiradi. Shuningdek `AUTH_SECRET`, `ADMIN_USERNAME`, `ADMIN_PASSWORD`, `NEXT_PUBLIC_SITE_URL` koʻrsatilishi kerak. Baza ulanmagan boʻlsa, build aniq xabar bilan toʻxtaydi.
 - **Oʻz serveringiz (VPS)**: `DATABASE_URL` ni Neon bazasiga yoʻnaltirib, `npm run build && npm start`.
