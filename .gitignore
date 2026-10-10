@@ -49,3 +49,7 @@ next-env.d.ts
 
 # xodimlarning shaxsiy maʼlumotlari (telefon, tugʻilgan yil, stavka)
 /private
+
+# Vercel/Neon CLI oʻrnatgan AI-agent koʻnikmalari
+/.agents
+skills-lock.json

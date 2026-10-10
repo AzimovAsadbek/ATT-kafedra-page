@@ -60,7 +60,7 @@ async function ensureAdmin() {
   }
 }
 
-await migrateDb(db);
+await migrateDb();
 
 await db
   .insert(settings)
