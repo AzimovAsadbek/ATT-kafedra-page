@@ -49,6 +49,21 @@ export default function Navbar() {
     (item.section === "oqituvchilar" && pathname.startsWith("/oqituvchilar")) || activeSection === item.section;
   const closeMenu = () => setMenuOpen(false);
 
+  // Bosh sahifadagi bo'lim havolalari: mobil menyu yopilganda layout o'zgaradi va Next'ning
+  // hash'ga aylantirishi bekor bo'lib qoladi, shuning uchun aylantirishni o'zimiz bajaramiz.
+  const handleNavClick = (event, href) => {
+    closeMenu();
+    if (pathname !== "/" || !href.startsWith("/#")) return;
+
+    const id = href.slice(2);
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    event.preventDefault();
+    window.history.pushState(null, "", `#${id}`);
+    requestAnimationFrame(() => target.scrollIntoView({ behavior: "smooth", block: "start" }));
+  };
+
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85">
       <nav className="container-page flex h-[72px] items-center justify-between gap-8" aria-label="Asosiy menyu">
@@ -63,6 +78,7 @@ export default function Navbar() {
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  onClick={(event) => handleNavClick(event, item.href)}
                   aria-current={active ? "true" : undefined}
                   className={`relative py-6 text-[15px] font-medium transition-colors after:absolute after:inset-x-0 after:-bottom-px after:h-0.5 after:transition-colors ${
                     active
@@ -96,7 +112,7 @@ export default function Navbar() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  onClick={closeMenu}
+                  onClick={(event) => handleNavClick(event, item.href)}
                   className={`flex items-center justify-between py-3.5 font-medium ${
                     isActive(item) ? "text-brand-950" : "text-slate-600"
                   }`}

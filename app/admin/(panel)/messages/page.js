@@ -7,6 +7,7 @@ import { deleteMessage, setMessageStatus } from "@/lib/actions/messages";
 import { requireAdmin } from "@/lib/auth/session";
 import { db, messages } from "@/lib/db";
 import { formatDateTime } from "@/lib/format";
+import { getTelegramConfig } from "@/lib/telegram";
 
 export const metadata = { title: "Murojaatlar" };
 
@@ -42,10 +43,20 @@ export default async function MessagesPage({ searchParams }) {
     db.select({ total: count() }).from(messages).where(where),
   ]);
   const pageCount = Math.max(1, Math.ceil(total / PAGE_SIZE));
+  const telegram = await getTelegramConfig();
 
   return (
     <>
       <PageHeader title="Murojaatlar" description="Saytdagi “Onlayn murojaat” formasi orqali kelgan xabarlar" />
+
+      {!telegram.isReady && (
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-amber-50 px-5 py-4 text-sm text-amber-900 ring-1 ring-amber-200">
+          <span>Telegram ulanmagan — yangi murojaatlar faqat shu yerda koʻrinadi.</span>
+          <Link href="/admin/telegram" className="font-semibold underline">
+            Telegramʼni ulash
+          </Link>
+        </div>
+      )}
 
       <nav className="mb-6 flex gap-2 overflow-x-auto pb-1" aria-label="Holat boʻyicha saralash">
         {TABS.map((tab) => (

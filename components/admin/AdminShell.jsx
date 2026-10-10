@@ -11,6 +11,7 @@ import {
   Link2,
   LogOut,
   Menu,
+  Send,
   Settings,
   Users,
   X,
@@ -42,6 +43,7 @@ const NAV_GROUPS = [
     title: "Tizim",
     items: [
       { href: "/admin/settings", label: "Sayt sozlamalari", icon: Settings },
+      { href: "/admin/telegram", label: "Telegram xabarnoma", icon: Send, badgeKey: "telegramSetup" },
       { href: "/admin/account", label: "Hisob va parol", icon: KeyRound },
     ],
   },
@@ -71,7 +73,7 @@ function Sidebar({ user, badges, onNavigate }) {
             <ul className="space-y-1">
               {group.items.map((item) => {
                 const active = isActive(pathname, item);
-                const badge = item.badgeKey ? badges[item.badgeKey] : 0;
+                const badge = item.badgeKey ? badges[item.badgeKey] : null;
                 return (
                   <li key={item.href}>
                     <Link
@@ -84,8 +86,8 @@ function Sidebar({ user, badges, onNavigate }) {
                     >
                       <item.icon className={`size-5 ${active ? "text-teal-300" : "text-brand-300"}`} aria-hidden="true" />
                       <span className="flex-1">{item.label}</span>
-                      {badge > 0 && (
-                        <span className="rounded-full bg-teal-400 px-2 py-0.5 text-xs font-bold text-brand-950">{badge}</span>
+                      {Boolean(badge) && (
+                        <span className="rounded-full bg-gold-400 px-2 py-0.5 text-xs font-bold text-brand-950">{badge}</span>
                       )}
                     </Link>
                   </li>

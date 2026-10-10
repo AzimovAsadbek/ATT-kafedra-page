@@ -23,7 +23,7 @@ Namangan davlat texnika universiteti “Axborot tizimlari va texnologiyalari” 
 - Murojaatlar: yangi / oʻqilgan / arxiv, javob yozish, oʻchirish
 - Sayt sozlamalari: bosh ekran matni va rasmi, boʻlim matnlari, aloqa maʼlumotlari, xarita, ijtimoiy tarmoqlar
 - Parolni almashtirish (boshqa qurilmalardagi sessiyalar avtomatik yopiladi)
-- Yangi murojaat haqida Telegram orqali xabar (ixtiyoriy)
+- Telegram xabarnomalari: admin → **Telegram xabarnoma** sahifasida bot tokeni va qabul qiluvchi chatlar sozlanadi (chatlarni avtomatik aniqlash, sinov xabari). Har bir yangi murojaat “Admin panelda ochish” tugmasi bilan Telegram'ga keladi
 
 ## Texnologiyalar
 
@@ -75,7 +75,7 @@ Fayl formati: `[{ "slug": "...", "phone": "...", "birthYear": 1980, "rate": 1, "
 | `DATABASE_URL`                            | PostgreSQL manzili: Neon (`*.neon.tech` — HTTP drayveri) yoki lokal Docker |
 | `AUTH_SECRET`                             | Sessiyani imzolash kaliti, **productionda majburiy** (≥ 32 belgi)       |
 | `ADMIN_USERNAME`, `ADMIN_PASSWORD`        | Birinchi administrator (faqat bazada admin boʻlmaganda ishlatiladi)     |
-| `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`  | Ixtiyoriy: yangi murojaatlar haqida Telegram xabarnomasi                |
+| `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`  | Ixtiyoriy zaxira: odatda Telegram admin paneldan sozlanadi              |
 
 ## Buyruqlar
 
