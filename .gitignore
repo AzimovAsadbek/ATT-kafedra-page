@@ -53,3 +53,6 @@ next-env.d.ts
 # Vercel/Neon CLI oʻrnatgan AI-agent koʻnikmalari
 /.agents
 skills-lock.json
+
+# Xodimlar rasmlarining asl nusxalari (public/images/xodimlar/ ga qayta ishlangan)
+/iamges

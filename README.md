@@ -58,7 +58,7 @@ Sayt: <http://localhost:3000>, admin panel: <http://localhost:3000/admin>.
 
 ## Maʼlumotlar manbalari
 
-Boshlangʻich maʼlumotlar (`lib/db/seed-data.js`) [namdtu.uz](https://namdtu.uz/uz/departments/axborot-tizimlari-va-texnologiyalari-kafedrasi) rasmiy saytidan olingan: kafedra tarkibi, ism-familiyalar, lavozim, ilmiy daraja va mutaxassislik, emaillar, mehnat faoliyati, ilmiy yoʻnalishlar, rasmlar (`public/images/staff/`), yoʻnalish shifrlari va masʼul oʻqituvchilar, kafedra va universitet maʼlumotlari, NamDTU logotipi.
+Boshlangʻich maʼlumotlar (`lib/db/seed-data.js`) [namdtu.uz](https://namdtu.uz/uz/departments/axborot-tizimlari-va-texnologiyalari-kafedrasi) rasmiy saytidan olingan: kafedra tarkibi, ism-familiyalar, lavozim, ilmiy daraja va mutaxassislik, emaillar, mehnat faoliyati, ilmiy yoʻnalishlar, rasmlar (`public/images/xodimlar/`), yoʻnalish shifrlari va masʼul oʻqituvchilar, kafedra va universitet maʼlumotlari, NamDTU logotipi.
 
 Xodimlarning shaxsiy maʼlumotlari (telefon, tugʻilgan yil, stavka, faoliyat turi) **repoda saqlanmaydi**. Ular gitga kirmaydigan `private/staff-private.json` faylida turadi va:
 
