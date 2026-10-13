@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Avatar } from "./Portrait";
+import Portrait from "./Portrait";
 
 /** Lavozim va qo'shimcha vazifa/unvonni bitta qatorga yig'adi. */
 export function positionLine(member) {
@@ -7,18 +7,25 @@ export function positionLine(member) {
   return extra ? `${member.position} · ${extra}` : member.position;
 }
 
-/** Ma'lumotnoma qatori: barcha xodimlar bir xil ko'rinishda (surat bor-yo'qligidan qat'i nazar). */
-export default function StaffCard({ member }) {
+export default function StaffCard({ member, preload = false }) {
   return (
-    <li className="border-t border-line">
-      <Link href={`/oqituvchilar/${member.slug}`} className="group flex items-start gap-4 py-5 sm:gap-5">
-        <Avatar member={member} className="size-14 ring-1 ring-line sm:size-16" />
-        <div className="min-w-0 pt-0.5">
-          <h3 className="font-serif text-[17px] leading-snug font-semibold text-brand-950 decoration-gold-500 decoration-2 underline-offset-4 group-hover:underline">
+    <li>
+      <Link href={`/oqituvchilar/${member.slug}`} className="group block">
+        <Portrait
+          member={member}
+          preload={preload}
+          sizes="(min-width: 1440px) 320px, (min-width: 1024px) 24vw, (min-width: 640px) 32vw, 50vw"
+          className="ring-1 ring-black/5 ring-inset"
+          imageClassName="transition duration-500 ease-out group-hover:scale-[1.03]"
+        />
+        <div className="mt-4">
+          <h3 className="font-serif text-[15px] leading-snug font-semibold text-brand-950 decoration-gold-500 decoration-2 underline-offset-4 group-hover:underline sm:text-[17px]">
             {member.fullName}
           </h3>
-          <p className="mt-1 text-sm font-medium text-gold-700">{positionLine(member)}</p>
-          {member.academicDegree && <p className="mt-0.5 text-sm leading-snug text-slate-500">{member.academicDegree}</p>}
+          <p className="mt-1.5 text-[13px] font-medium text-gold-700 sm:text-sm">{positionLine(member)}</p>
+          {member.academicDegree && (
+            <p className="mt-1 text-[13px] leading-snug text-slate-500 sm:text-sm">{member.academicDegree}</p>
+          )}
         </div>
       </Link>
     </li>

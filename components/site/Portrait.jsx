@@ -4,6 +4,9 @@ import Image from "next/image";
 // rasmlar xira cho'zilmasdan, fon ichida markazda ko'rsatiladi.
 const MAX_UPSCALE = 1.6;
 
+// Rasmiy portretlar foni (#f8f8f8) bilan bir xil — rasm va karta chegarasi ko'zga tashlanmaydi.
+const PHOTO_BG = "bg-[#f8f8f8]";
+
 export function getInitials(fullName) {
   return fullName
     .split(/\s+/)
@@ -12,15 +15,27 @@ export function getInitials(fullName) {
     .join("");
 }
 
+/** Surati yo'q xodim uchun: portretlar kompozitsiyasidagi neytral siluet. */
+function Silhouette() {
+  return (
+    <svg viewBox="0 0 300 400" className="absolute inset-0 size-full" aria-hidden="true">
+      <g fill="#e7e7e4">
+        <ellipse cx="150" cy="172" rx="56" ry="68" />
+        <path d="M14 400c4-74 58-118 136-118s132 44 136 118Z" />
+      </g>
+    </svg>
+  );
+}
+
 /**
- * 3:4 portret; rasm bo'lmasa — ism bosh harflari. Ota-element o'lchamni belgilaydi.
+ * 3:4 portret; rasm bo'lmasa — siluet. Ota-element o'lchamni belgilaydi.
  * `member.photoWidth` (lib/data/site.js) ma'lum bo'lsa, past sifatli rasm cho'zilmaydi.
  */
-export default function Portrait({ member, sizes, preload = false, className = "" }) {
+export default function Portrait({ member, sizes, preload = false, className = "", imageClassName = "" }) {
   const maxWidth = member.photoWidth ? Math.round(member.photoWidth * MAX_UPSCALE) : null;
 
   return (
-    <div className={`relative aspect-[3/4] overflow-hidden bg-sand ${className}`}>
+    <div className={`relative aspect-[3/4] overflow-hidden ${PHOTO_BG} ${className}`}>
       {member.photo ? (
         <div
           className="absolute inset-x-0 top-1/2 mx-auto aspect-[3/4] w-full -translate-y-1/2"
@@ -32,15 +47,11 @@ export default function Portrait({ member, sizes, preload = false, className = "
             fill
             sizes={sizes}
             preload={preload}
-            className="object-cover object-top"
+            className={`object-cover object-top ${imageClassName}`}
           />
         </div>
       ) : (
-        <div className="grid h-full place-items-center" aria-hidden="true">
-          <span className="font-serif text-[clamp(1.5rem,5vw,3rem)] font-medium tracking-wide text-brand-300">
-            {getInitials(member.fullName)}
-          </span>
-        </div>
+        <Silhouette />
       )}
     </div>
   );

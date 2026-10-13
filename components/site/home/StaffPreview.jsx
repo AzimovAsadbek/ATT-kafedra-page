@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import StaffCard from "../StaffCard";
 
-const PREVIEW_COUNT = 9;
+const PREVIEW_COUNT = 8;
 
 export default function StaffPreview({ staff, intro }) {
   if (!staff.length) return null;
@@ -27,7 +27,7 @@ export default function StaffPreview({ staff, intro }) {
           </Link>
         </div>
 
-        <ul className="grid border-b border-line sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-3">
+        <ul className="grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 lg:gap-x-8">
           {staff.slice(0, PREVIEW_COUNT).map((member) => (
             <StaffCard key={member.id} member={member} />
           ))}
