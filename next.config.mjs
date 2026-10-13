@@ -21,6 +21,12 @@ const nextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
+  async rewrites() {
+    return [
+      // Xodimlar rasmlari /images/xodimlar/ ga ko'chirilgan; eski manzil keshlangan sahifalarda buzilmasin.
+      { source: "/images/staff/:file", destination: "/images/xodimlar/:file" },
+    ];
+  },
 };
 
 export default nextConfig;
